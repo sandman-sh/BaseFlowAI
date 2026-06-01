@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createOpenAI } from '@ai-sdk/openai';
+import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { streamText, tool } from 'ai';
 import { z } from 'zod';
 import { supabase } from '@/lib/supabase';
@@ -40,9 +40,8 @@ export async function POST(req: Request) {
       return createMockStreamResponse(messages);
     }
 
-    // Configure the OpenRouter client using the OpenAI provider
-    const openrouter = createOpenAI({
-      baseURL: 'https://openrouter.ai/api/v1',
+    // Configure the OpenRouter client using the official OpenRouter provider
+    const openrouter = createOpenRouter({
       apiKey: openrouterApiKey,
       headers: {
         'HTTP-Referer': 'https://baseflow.finance',
@@ -52,8 +51,8 @@ export async function POST(req: Request) {
 
     // Stream text using a powerful, fast, and tool-capable model on OpenRouter
     const result = await streamText({
-      model: openrouter('google/gemini-2.5-flash:free', { maxTokens: 1000 }),
-      maxTokens: 1000,
+      model: openrouter('google/gemini-2.5-flash'),
+      maxOutputTokens: 1000,
       messages: convertMessages(messages),
       system: `You are the BaseFlow AI Financial Operations Agent, a premium crypto-billing coprocessor for Web3 freelancers.
       Your primary job is to help freelancers bill clients, generate invoices on Supabase, and build transaction payloads on the Base network.
