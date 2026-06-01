@@ -9,8 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        brand: {
+          blue: "#0052FF",
+          blueDark: "#003BBD",
+          blueLight: "#E5EDFF",
+        },
+        brutalBlack: "#000000",
+        brutalWhite: "#FFFFFF",
+        brutalGray: "#F4F6FA",
+        brutalYellow: "#FFD600",
+      },
+      boxShadow: {
+        brutalSm: "2px 2px 0px 0px #000000",
+        brutal: "4px 4px 0px 0px #000000",
+        brutalLg: "8px 8px 0px 0px #000000",
+      },
+      borderWidth: {
+        "3": "3px",
       },
     },
   },
