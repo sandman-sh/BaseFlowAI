@@ -52,7 +52,7 @@ export async function POST(req: Request) {
 
     // Stream text using a powerful, fast, and tool-capable model on OpenRouter
     const result = await streamText({
-      model: openrouter('meta-llama/llama-3.3-70b-instruct'),
+      model: openrouter('google/gemini-2.5-flash'),
       messages: convertMessages(messages),
       system: `You are the BaseFlow AI Financial Operations Agent, a premium crypto-billing coprocessor for Web3 freelancers.
       Your primary job is to help freelancers bill clients, generate invoices on Supabase, and build transaction payloads on the Base network.
